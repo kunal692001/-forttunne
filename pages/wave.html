@@ -1,109 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Responsive Navbar</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>5 Offer Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .navbar-brand {
+    .offer-starburst {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
       font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      color: #fff;
+      transform: rotate(-20deg);
+      clip-path: polygon(
+        50% 0%, 57% 18%, 70% 6%, 74% 25%, 90% 10%, 87% 30%, 100% 35%, 
+        85% 50%, 100% 65%, 87% 70%, 90% 90%, 74% 75%, 70% 94%, 
+        57% 82%, 50% 100%, 43% 82%, 30% 94%, 26% 75%, 10% 90%, 
+        13% 70%, 0% 65%, 15% 50%, 0% 35%, 13% 30%, 10% 10%, 
+        26% 25%, 30% 6%, 43% 18%
+      );
+      animation: rainbowBlink 1.5s infinite;
+      z-index: 10;
     }
 
-    .call-text {
-      white-space: nowrap;
-    }
-    .item:hover{
-       color: orangered;
-    }
-    .logo-img{
-        border-radius: 50%;
+    @keyframes rainbowBlink {
+      0% { background: red; }
+      14% { background: orange; }
+      28% { background: yellow; }
+      42% { background: green; }
+      57% { background: blue; }
+      71% { background: indigo; }
+      85% { background: violet; }
+      100% { background: red; }
     }
 
-    @media (max-width: 768px) {
-      .call-text {
-        font-size: 14px;
+    .sec-card-custom {
+      position: relative;
+      overflow: hidden;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 1rem;
+    }
+
+    .sec-card-body p {
+      font-size: 1rem;
+    }
+
+    .sec-call-now-btn {
+      background-color: white;
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    @media (max-width: 576px) {
+      .col-custom {
+        flex: 0 0 100%;
+        max-width: 100%;
       }
     }
-    
-.wave-text {
-  display: flex;
-  font-size: 35px;
-  font-weight: bold;
-}
-.wave-text .wave-color{
-  color: white;
-  
-}
-
-.wave-text span {
-  display: inline-block;
-  animation: wave 1s infinite;
-  animation-delay: calc(0.1s * var(--i));
-  color: rgb(247, 53, 19);
-  text-shadow: 2px 2px #000;
-}
-
-.wave-text span:nth-child(n) {
-  --i: 1;
-}
-.wave-text span:nth-child(2) { --i: 2; }
-.wave-text span:nth-child(3) { --i: 3; }
-.wave-text span:nth-child(4) { --i: 4; }
-.wave-text span:nth-child(5) { --i: 5; }
-.wave-text span:nth-child(6) { --i: 6; }
-.wave-text span:nth-child(7) { --i: 7; }
-.wave-text span:nth-child(8) { --i: 8; }
-.wave-text span:nth-child(9) { --i: 9; }
-.wave-text span:nth-child(10) { --i: 10; }
-.wave-text span:nth-child(11) { --i: 11; }
-
-@keyframes wave {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
   </style>
 </head>
-<body>
+<body class="bg-white">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <!-- Left: Logo + Text -->
-      <a class="navbar-brand" href="#">
-        <img src="../images/astro-1.jpg" class="logo-img" alt="Logo" width="60" height="60" class="d-inline-block align-text-top" />
-       <h1 class="wave-text">
-        <span class="wave-color">F</span><span class="wave-color">o</span><span class="wave-color">r</span><span>T</span><span>T</span><span>u</span><span>n</span><span>n</span><span>e</span>
-        </h1>
-      </a>
+  <div class="container py-5">
+    <div class="row justify-content-center g-4">
 
-      <!-- Mobile Toggle -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Center: Menu -->
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Places</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Zodiac</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-        </ul>
+      <!-- Row 1: 3 Cards -->
+      <div class="col-md-4 col-sm-6 col-custom">
+        <div class="card card-custom text-center">
+          <div class="offer-starburst">Offer</div>
+          <div class="card-body">
+            <h5 class="card-title">Title 1</h5>
+            <p class="card-text">Fast Deal</p>
+            <a href="#" class="btn call-now-btn">Call Now</a>
+          </div>
+        </div>
       </div>
 
-      <!-- Right: Call Text -->
-      <div class="d-flex align-items-center call-text text-white">
-        Call: +91 98235 16041
+      <div class="col-md-4 col-sm-6 col-custom">
+        <div class="card card-custom text-center">
+          <div class="offer-starburst">Offer</div>
+          <div class="card-body">
+            <h5 class="card-title">Title 2</h5>
+            <p class="card-text">Best Rate</p>
+            <a href="#" class="btn call-now-btn">Call Now</a>
+          </div>
+        </div>
       </div>
+
+      <div class="col-md-4 col-sm-6 col-custom">
+        <div class="card card-custom text-center">
+          <div class="offer-starburst">Offer</div>
+          <div class="card-body">
+            <h5 class="card-title">Title 3</h5>
+            <p class="card-text">Hot Sale</p>
+            <a href="#" class="btn call-now-btn">Call Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: 2 Cards -->
+      <div class="col-md-6 col-sm-6 col-custom">
+        <div class="card card-custom text-center">
+          <div class="offer-starburst">Offer</div>
+          <div class="card-body">
+            <h5 class="card-title">Title 4</h5>
+            <p class="card-text">Big Save</p>
+            <a href="#" class="btn call-now-btn">Call Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-custom">
+        <div class="card card-custom text-center">
+          <div class="offer-starburst">Offer</div>
+          <div class="card-body">
+            <h5 class="card-title">Title 5</h5>
+            <p class="card-text">Limited</p>
+            <a href="#" class="btn call-now-btn">Call Now</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </nav>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
