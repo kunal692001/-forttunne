@@ -433,7 +433,7 @@ color: white;
     }
 
     .btn-offer-call {
-      background-color: #58e574;
+      background-color: white;
       color: #dc3545;
       font-weight: bold;
       border: none;
@@ -443,8 +443,8 @@ color: white;
     }
 
     .btn-offer-call:hover {
-      background-color: #045211;
-      color: #c82333;
+      background-color: #0cc72b;
+      
     }
 
     /* Custom responsive handling */
