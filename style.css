@@ -43,9 +43,10 @@
     
 .wave-text {
   display: flex;
-  font-size: 40px;
-  font-weight: bold;
-  font-family: 'Comic Neue', cursive;
+  font-size: 35px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800; /* Thicker than 700 */
+  color: #f73513;
 }
 .wave-text .wave-color{
   color: white;
