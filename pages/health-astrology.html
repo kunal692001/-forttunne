@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gemstone Astrology Guidance</title>
+  <title>Health Astrology Guide</title>
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #fff0f5, #d0f0fd);
+      background: linear-gradient(to right, #f0f9ff, #e0ffe0);
       padding: 20px;
     }
 
@@ -25,7 +25,7 @@
 
     h1 {
       text-align: center;
-      color: #333;
+      color: #2c7a7b;
     }
 
     .form-section {
@@ -56,23 +56,22 @@
       margin-top: 20px;
       padding: 12px 30px;
       font-size: 16px;
-      background-color: #6a0dad;
+      background-color: #319795;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
     }
 
     button:hover {
-      background-color: #4b0082;
+      background-color: #2c7a7b;
     }
 
     .result {
       margin-top: 30px;
       padding: 20px;
-      background: #f0f8ff;
-      border-left: 6px solid #6a0dad;
+      background: #e6fffa;
+      border-left: 6px solid #319795;
       border-radius: 10px;
     }
 
@@ -89,7 +88,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>💎 Gemstone Astrology Guidance</h1>
+    <h1>🩺 Health Astrology Guidance</h1>
 
     <div class="form-section">
       <div class="form-group">
@@ -110,29 +109,29 @@
       </div>
     </div>
 
-    <button onclick="generateGemstone()">Find My Gemstone</button>
+    <button onclick="generateHealth()">Get Health Insight</button>
 
     <div class="result" id="resultBox" style="display:none;">
-      <h3>🪬 Your Recommended Gemstone:</h3>
-      <p id="predictionText"></p>
+      <h3>🌿 Health Advice:</h3>
+      <p id="healthText"></p>
     </div>
   </div>
 
   <script>
     function getZodiac(month, day) {
       const zodiacs = [
-        { sign: "Capricorn", gem: "Garnet", start: "12-22", end: "01-19" },
-        { sign: "Aquarius",  gem: "Amethyst", start: "01-20", end: "02-18" },
-        { sign: "Pisces",    gem: "Aquamarine", start: "02-19", end: "03-20" },
-        { sign: "Aries",     gem: "Diamond", start: "03-21", end: "04-19" },
-        { sign: "Taurus",    gem: "Emerald", start: "04-20", end: "05-20" },
-        { sign: "Gemini",    gem: "Pearl", start: "05-21", end: "06-20" },
-        { sign: "Cancer",    gem: "Ruby", start: "06-21", end: "07-22" },
-        { sign: "Leo",       gem: "Peridot", start: "07-23", end: "08-22" },
-        { sign: "Virgo",     gem: "Sapphire", start: "08-23", end: "09-22" },
-        { sign: "Libra",     gem: "Opal", start: "09-23", end: "10-22" },
-        { sign: "Scorpio",   gem: "Topaz", start: "10-23", end: "11-21" },
-        { sign: "Sagittarius", gem: "Turquoise", start: "11-22", end: "12-21" },
+        { sign: "Aries", health: "Take care of your head, avoid stress. Do yoga for calmness." , start: "03-21", end: "04-19" },
+        { sign: "Taurus", health: "Watch your throat and neck. Avoid overindulgence in food.", start: "04-20", end: "05-20" },
+        { sign: "Gemini", health: "Pay attention to your lungs and arms. Breathing exercises are beneficial.", start: "05-21", end: "06-20" },
+        { sign: "Cancer", health: "Stomach and chest may be sensitive. Follow a light and regular diet.", start: "06-21", end: "07-22" },
+        { sign: "Leo", health: "Heart and spine are key areas. Practice regular cardiovascular exercise.", start: "07-23", end: "08-22" },
+        { sign: "Virgo", health: "Intestines and digestion are sensitive. Herbal remedies and detox are helpful.", start: "08-23", end: "09-22" },
+        { sign: "Libra", health: "Kidneys and lower back can be weak. Stay hydrated and maintain balance.", start: "09-23", end: "10-22" },
+        { sign: "Scorpio", health: "Reproductive organs need attention. Practice emotional control.", start: "10-23", end: "11-21" },
+        { sign: "Sagittarius", health: "Hips, thighs, and liver should be cared for. Avoid excess.", start: "11-22", end: "12-21" },
+        { sign: "Capricorn", health: "Bones and joints may be weak. Include calcium and do joint exercises.", start: "12-22", end: "01-19" },
+        { sign: "Aquarius", health: "Circulatory system and ankles need care. Avoid cold environments.", start: "01-20", end: "02-18" },
+        { sign: "Pisces", health: "Feet and immune system are sensitive. Avoid intoxication and increase rest.", start: "02-19", end: "03-20" }
       ];
 
       const dateStr = `${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -155,7 +154,7 @@
       return null;
     }
 
-    function generateGemstone() {
+    function generateHealth() {
       const name = document.getElementById("name").value.trim();
       const birthdate = document.getElementById("birthdate").value;
 
@@ -170,12 +169,11 @@
       const zodiac = getZodiac(month, day);
 
       if (!zodiac) {
-        document.getElementById("predictionText").textContent = "Could not determine zodiac sign.";
+        document.getElementById("healthText").textContent = "Could not determine zodiac sign.";
       } else {
-        document.getElementById("predictionText").innerHTML = `
-          Hello <b>${name}</b>, your zodiac sign is <b>${zodiac.sign}</b>. 
-          The recommended gemstone for you is <b>${zodiac.gem}</b>. 
-          Wearing it may enhance your luck, health, and success. 💫
+        document.getElementById("healthText").innerHTML = `
+          Hello <b>${name}</b>, your zodiac sign is <b>${zodiac.sign}</b>.<br>
+          Health Tip: <b>${zodiac.health}</b>
         `;
       }
 

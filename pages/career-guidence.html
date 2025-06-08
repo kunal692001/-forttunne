@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Astrology Career & Finance Guidance</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe9e3, #d8f3dc);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .form-group {
+      flex: 1 1 45%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f0f9ff;
+      border-left: 5px solid #007bff;
+      border-radius: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .form-group {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔮 Career & Finance Astrology Guidance</h1>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Date of Birth:</label>
+        <input type="date" id="birthdate" />
+      </div>
+      <div class="form-group">
+        <label for="time">Time of Birth:</label>
+        <input type="time" id="time" />
+      </div>
+      <div class="form-group">
+        <label for="place">Place of Birth:</label>
+        <input type="text" id="place" placeholder="City, Country" />
+      </div>
+    </div>
+
+    <button onclick="generatePrediction()">Get Guidance</button>
+
+    <div class="result" id="resultBox" style="display:none;">
+      <h3>🪐 Your Career & Finance Prediction:</h3>
+      <p id="predictionText"></p>
+    </div>
+  </div>
+
+  <script>
+    function generatePrediction() {
+      const name = document.getElementById("name").value.trim();
+      const birthdate = document.getElementById("birthdate").value;
+      const time = document.getElementById("time").value;
+      const place = document.getElementById("place").value.trim();
+
+      const predictionBox = document.getElementById("resultBox");
+      const predictionText = document.getElementById("predictionText");
+
+      if (!name || !birthdate || !time || !place) {
+        alert("Please fill in all the details.");
+        return;
+      }
+
+      const samplePredictions = [
+        "This year brings opportunities for career growth. Stay focused and consistent.",
+        "Financial stability is on the horizon. Avoid impulsive spending.",
+        "Your creative ideas will lead to a big breakthrough at work.",
+        "Investments made in the coming months will yield long-term gains.",
+        "You may face some challenges in your profession, but persistence will pay off.",
+        "A promotion or job switch could bring a significant financial boost."
+      ];
+
+      const randomIndex = Math.floor(Math.random() * samplePredictions.length);
+      predictionText.textContent = `${name}, ${samplePredictions[randomIndex]}`;
+      predictionBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>

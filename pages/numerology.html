@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Numerology Life Path</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f9f3ff, #e6f7ff);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a148c;
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      flex: 1 1 45%;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #7b1fa2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4a148c;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f3e5f5;
+      border-left: 5px solid #7b1fa2;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .form-group {
+        flex: 1 1 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔢 Numerology Life Path Calculator</h1>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Date of Birth:</label>
+        <input type="date" id="birthdate" />
+      </div>
+    </div>
+
+    <button onclick="calculateNumerology()">Calculate Life Path</button>
+
+    <div class="result" id="resultBox" style="display:none;">
+      <h3>🌟 Life Path Insight:</h3>
+      <p id="numerologyResult"></p>
+    </div>
+  </div>
+
+  <script>
+    const meanings = {
+      1: "Leader, ambitious, independent, and original.",
+      2: "Diplomatic, sensitive, peacemaker, and cooperative.",
+      3: "Creative, social, optimistic, and expressive.",
+      4: "Practical, disciplined, hardworking, and dependable.",
+      5: "Adventurous, dynamic, freedom-loving, and energetic.",
+      6: "Nurturing, responsible, caring, and family-oriented.",
+      7: "Spiritual, analytical, introspective, and wise.",
+      8: "Ambitious, powerful, organized, and business-minded.",
+      9: "Compassionate, humanitarian, idealistic, and generous.",
+      11: "Visionary, intuitive, inspirational leader (Master Number).",
+      22: "Master builder, disciplined, practical visionary (Master Number).",
+      33: "Master healer, compassionate teacher (Master Number)."
+    };
+
+    function reduceToSingleDigit(num) {
+      if ([11, 22, 33].includes(num)) return num;
+      while (num > 9) {
+        num = num.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+      }
+      return num;
+    }
+
+    function calculateLifePathNumber(dob) {
+      const [year, month, day] = dob.split('-').map(Number);
+      const sum = (
+        year.toString().split('').reduce((a, b) => a + parseInt(b), 0) +
+        month.toString().split('').reduce((a, b) => a + parseInt(b), 0) +
+        day.toString().split('').reduce((a, b) => a + parseInt(b), 0)
+      );
+      return reduceToSingleDigit(sum);
+    }
+
+    function calculateNumerology() {
+      const name = document.getElementById("name").value.trim();
+      const dob = document.getElementById("birthdate").value;
+
+      if (!name || !dob) {
+        alert("Please fill in both name and date of birth.");
+        return;
+      }
+
+      const lifePath = calculateLifePathNumber(dob);
+      const meaning = meanings[lifePath] || "Unique path, undefined traits.";
+
+      document.getElementById("numerologyResult").innerHTML = `
+        Hello <b>${name}</b>, your Life Path Number is <b>${lifePath}</b>.<br>
+        <b>Meaning:</b> ${meaning}
+      `;
+      document.getElementById("resultBox").style.display = "block";
+    }
+  </script>
+</body>
+</html>

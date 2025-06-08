@@ -2,49 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astrology Birth Chart</title>
-  <link rel="stylesheet" href="../css/birth-chart.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Astrology Birth Chart</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #1e1e2f, #2e2e4d);
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffdd57;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #29294d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #444;
+      color: white;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffdd57;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffc107;
+    }
+
+    .result {
+      margin-top: 20px;
+      background-color: #1c1c2e;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>🪐 Astrology Birth Chart Reading</h1>
+  <div class="container">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="e.g., Kunal Golkar" />
 
-  <h1>Interactive Astrology Birth Chart</h1>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" />
 
-  <div class="chart-container">
-    <div class="chart-circle">
-      <!-- Planets -->
-      <div class="planet" data-planet="Sun" style="top: 50px; left: 100px;"></div>
-      <div class="planet" data-planet="Moon" style="top: 150px; left: 50px;"></div>
-      <div class="planet" data-planet="Mercury" style="top: 200px; left: 200px;"></div>
-      <!-- More planets can be added similarly -->
+    <label for="time">Time of Birth:</label>
+    <input type="time" id="time" />
+
+    <label for="location">Birthplace:</label>
+    <input type="text" id="location" placeholder="e.g., Mumbai, India" />
+
+    <button onclick="generateReading()">Get Your Chart</button>
+
+    <div class="result" id="result" style="display:none;">
+      <h3>🔮 Your Reading:</h3>
+      <p id="output"></p>
     </div>
-    <p><em>Click on a planet for more details.</em></p>
   </div>
 
-  <div id="planet-info" class="planet-info">
-    <h3>Planet Information</h3>
-    <p id="planet-name">Planet: <strong>None</strong></p>
-    <p id="planet-sign">Sign: <strong>None</strong></p>
-    <p id="planet-house">House: <strong>None</strong></p>
-    <p id="planet-degree">Degree: <strong>None</strong></p>
-  </div>
+  <script>
+    function generateReading() {
+      const name = document.getElementById("name").value;
+      const dob = new Date(document.getElementById("dob").value);
+      const time = document.getElementById("time").value;
+      const location = document.getElementById("location").value;
+      const resultDiv = document.getElementById("result");
+      const output = document.getElementById("output");
 
-  <table>
-    <thead>
-      <tr>
-        <th>Planet</th>
-        <th>Sign</th>
-        <th>Degree</th>
-        <th>House</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Sun</td><td>Taurus</td><td>12°</td><td>3rd</td></tr>
-      <tr><td>Moon</td><td>Leo</td><td>25°</td><td>6th</td></tr>
-      <tr><td>Mercury</td><td>Aries</td><td>5°</td><td>2nd</td></tr>
-    </tbody>
-  </table>
+      if (!name || isNaN(dob) || !time || !location) {
+        alert("Please fill all the fields.");
+        return;
+      }
 
-  <script src="../css/birth-chart.js"></script>
+      const month = dob.getMonth() + 1;
+      const day = dob.getDate();
+
+      const zodiac = getZodiacSign(day, month);
+      const greeting = getGreeting();
+
+      output.innerHTML = `
+        Hello <strong>${name}</strong>, born on <strong>${dob.toDateString()}</strong> at <strong>${time}</strong> in <strong>${location}</strong>.<br><br>
+        Your zodiac sign is <strong>${zodiac}</strong> 🌟<br><br>
+        ${greeting}
+      `;
+      resultDiv.style.display = "block";
+    }
+
+    function getZodiacSign(day, month) {
+      const signs = [
+        ["Capricorn", 19], ["Aquarius", 18], ["Pisces", 20], ["Aries", 19],
+        ["Taurus", 20], ["Gemini", 20], ["Cancer", 22], ["Leo", 22],
+        ["Virgo", 22], ["Libra", 22], ["Scorpio", 21], ["Sagittarius", 21]
+      ];
+      return day > signs[month - 1][1]
+        ? signs[month % 12][0]
+        : signs[(month - 1) % 12][0];
+    }
+
+    function getGreeting() {
+      const messages = [
+        "You're a natural leader with an aura of power.",
+        "Your intuition is a guiding light. Trust it.",
+        "Balance and harmony define your path.",
+        "Creative energies flow within you.",
+        "You possess deep wisdom. Use it well.",
+        "A journey of transformation lies ahead!"
+      ];
+      return messages[Math.floor(Math.random() * messages.length)];
+    }
+  </script>
 </body>
 </html>

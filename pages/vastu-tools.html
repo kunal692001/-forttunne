@@ -2,30 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vastu Tools Astrology</title>
-  <link rel="stylesheet" href="../css/vastu-tools.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vastu Consultation</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #3e4e88;
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      flex: 1 1 45%;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #aaa;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #3e4e88;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2c3e68;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #e8ecff;
+      border-left: 6px solid #3e4e88;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .form-group {
+        flex: 1 1 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Vastu Tools Astrology</h1>
-    <input type="text" id="searchInput" placeholder="Search Vastu tool..." onkeyup="filterTools()" />
+    <h1>🏠 Vastu Consultation</h1>
 
-    <div class="grid" id="toolGrid">
-      <!-- Tool cards will be created by JS -->
+    <div class="form-section">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+
+      <div class="form-group">
+        <label for="property">Property Type:</label>
+        <select id="property">
+          <option value="Home">Home</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Office">Office</option>
+          <option value="Shop">Shop</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="facing">Main Entrance Facing:</label>
+        <select id="facing">
+          <option value="East">East</option>
+          <option value="West">West</option>
+          <option value="North">North</option>
+          <option value="South">South</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="rooms">Number of Rooms:</label>
+        <input type="number" id="rooms" placeholder="e.g. 4" />
+      </div>
     </div>
 
-    <div class="tips">
-      <h2>Vastu Tips</h2>
-      <ul>
-        <li>Keep the north-east clean and clutter-free.</li>
-        <li>Place mirrors only on north or east-facing walls.</li>
-        <li>Use salt water to mop weekly for energy cleansing.</li>
-        <li>Keep a tulsi plant near the east window or balcony.</li>
-      </ul>
+    <button onclick="getVastuAdvice()">Get Vastu Advice</button>
+
+    <div class="result" id="resultBox" style="display:none;">
+      <h3>🔮 Vastu Insights:</h3>
+      <p id="vastuText"></p>
     </div>
   </div>
 
-  <script src="../js/vastu-tools.js"></script>
+  <script>
+    function getVastuAdvice() {
+      const name = document.getElementById("name").value.trim();
+      const property = document.getElementById("property").value;
+      const facing = document.getElementById("facing").value;
+      const rooms = document.getElementById("rooms").value.trim();
+
+      if (!name || !rooms) {
+        alert("Please enter all required details.");
+        return;
+      }
+
+      let suggestion = "";
+
+      switch (facing) {
+        case "East":
+          suggestion = "East-facing properties bring positivity and growth. Ensure the kitchen is in the southeast and avoid toilets in the northeast.";
+          break;
+        case "West":
+          suggestion = "West-facing homes can bring success but require balance. Place main seating or drawing room in the northwest.";
+          break;
+        case "North":
+          suggestion = "North-facing homes are ideal for wealth. Keep north zones light and clean. Avoid heavy construction here.";
+          break;
+        case "South":
+          suggestion = "South-facing properties need proper planning. Place kitchen in southeast or northwest. Avoid main entrance directly south.";
+          break;
+      }
+
+      const finalText = `
+        Hello <b>${name}</b>, your <b>${property}</b> with <b>${rooms} room(s)</b> facing <b>${facing}</b> has the following suggestion:<br><br>
+        <b>${suggestion}</b>
+      `;
+
+      document.getElementById("vastuText").innerHTML = finalText;
+      document.getElementById("resultBox").style.display = "block";
+    }
+  </script>
 </body>
 </html>

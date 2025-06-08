@@ -18,6 +18,18 @@
 
 
 /* navbar section start */
+nav{ 
+    background-image: url(./images/space-nav-img.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+}
  .navbar-brand {
       font-weight: bold;
       display: flex;
@@ -429,7 +441,8 @@ color: white;
     }
 
     .offer-card-description {
-      font-size: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
       margin-bottom: 1rem;
     }
 

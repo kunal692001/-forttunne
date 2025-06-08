@@ -1,244 +1,195 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zodiac Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horoscope Predictor</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
-      background: #f3f4f6;
-      padding: 40px 20px;
     }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1d1d40, #3a3a80);
+      color: white;
+      padding: 20px;
+    }
+
     h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  color: #1f2937;
-  font-size: 2.5rem;
-}
+      text-align: center;
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #2b2b5e;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: center;
+    }
 
-.zodiac-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 400px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
 
-.zodiac-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 24px rgba(0,0,0,0.15);
-}
+    select {
+      background-color: #444;
+      color: #fff;
+    }
 
-.zodiac-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-}
+    button {
+      background-color: #ffd700;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-.zodiac-name {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #1f2937;
-}
+    button:hover {
+      background-color: #ffb300;
+    }
 
-.zodiac-dates {
-  font-size: 0.95rem;
-  color: #6b7280;
-  margin-bottom: 15px;
-}
+    .prediction-box {
+      margin-top: 25px;
+      background-color: #1e1e3f;
+      padding: 15px;
+      border-radius: 10px;
+      animation: fadeIn 0.5s ease-in;
+    }
 
-.zodiac-details {
-  font-size: 0.9rem;
-  color: #374151;
-  text-align: left;
-  width: 100%;
-}
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-.zodiac-details strong {
-  display: inline-block;
-  width: 90px;
-  color: #111827;
-}
-
-.zodiac-description {
-  margin-top: auto;
-  font-style: italic;
-  color: #4b5563;
-}
-
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+    }
   </style>
 </head>
-<body>  <h1>12 Zodiac Signs</h1>
-  <div class="grid-container"><!-- Aries -->
-<div class="zodiac-card">
-  <img src="../images/aries.png" alt="Aries Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Aries ♈</div>
-  <div class="zodiac-dates">Mar 21 - Apr 19</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Fire</p>
-    <p><strong>Planet:</strong> Mars</p>
-    <p><strong>Modality:</strong> Cardinal</p>
-  </div>
-  <div class="zodiac-description">Bold and energetic leader. Aries dives headfirst into every challenge.</div>
-</div>
+<body>
 
-<!-- Taurus -->
-<div class="zodiac-card">
-  <img src="../images/taurus.png" alt="Taurus Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Taurus ♉</div>
-  <div class="zodiac-dates">Apr 20 - May 20</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Earth</p>
-    <p><strong>Planet:</strong> Venus</p>
-    <p><strong>Modality:</strong> Fixed</p>
-  </div>
-  <div class="zodiac-description">Loyal and grounded. Taurus thrives in comfort and stability.</div>
-</div>
+  <h1>🔮 Horoscope Predictor</h1>
 
-<!-- Gemini -->
-<div class="zodiac-card">
-  <img src="../images/gemini.png" alt="Gemini Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Gemini ♊</div>
-  <div class="zodiac-dates">May 21 - Jun 20</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Air</p>
-    <p><strong>Planet:</strong> Mercury</p>
-    <p><strong>Modality:</strong> Mutable</p>
-  </div>
-  <div class="zodiac-description">Curious and adaptable. Gemini loves communication and ideas.</div>
-</div>
+  <div class="container">
+    <label for="zodiac">Choose your Zodiac Sign:</label>
+    <select id="zodiac">
+      <option value="">-- Select Sign --</option>
+      <option value="Aries">♈ Aries</option>
+      <option value="Taurus">♉ Taurus</option>
+      <option value="Gemini">♊ Gemini</option>
+      <option value="Cancer">♋ Cancer</option>
+      <option value="Leo">♌ Leo</option>
+      <option value="Virgo">♍ Virgo</option>
+      <option value="Libra">♎ Libra</option>
+      <option value="Scorpio">♏ Scorpio</option>
+      <option value="Sagittarius">♐ Sagittarius</option>
+      <option value="Capricorn">♑ Capricorn</option>
+      <option value="Aquarius">♒ Aquarius</option>
+      <option value="Pisces">♓ Pisces</option>
+    </select>
 
-<!-- Cancer -->
-<div class="zodiac-card">
-  <img src="../images/cancerpng.png" alt="Cancer Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Cancer ♋</div>
-  <div class="zodiac-dates">Jun 21 - Jul 22</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Water</p>
-    <p><strong>Planet:</strong> Moon</p>
-    <p><strong>Modality:</strong> Cardinal</p>
-  </div>
-  <div class="zodiac-description">Deeply intuitive and caring. Cancer values home and family.</div>
-</div>
+    <button onclick="getHoroscope()">Get Prediction</button>
 
-<!-- Leo -->
-<div class="zodiac-card">
-  <img src="../images/leopng.png" alt="Leo Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Leo ♌</div>
-  <div class="zodiac-dates">Jul 23 - Aug 22</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Fire</p>
-    <p><strong>Planet:</strong> Sun</p>
-    <p><strong>Modality:</strong> Fixed</p>
+    <div class="prediction-box" id="predictionBox" style="display: none;">
+      <h3>Your Prediction:</h3>
+      <p id="predictionText"></p>
+    </div>
   </div>
-  <div class="zodiac-description">Charismatic and proud. Leo shines in the spotlight and loves to lead.</div>
-</div>
 
-<!-- Virgo -->
-<div class="zodiac-card">
-  <img src="../images/virgo.png" alt="Virgo Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Virgo ♍</div>
-  <div class="zodiac-dates">Aug 23 - Sep 22</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Earth</p>
-    <p><strong>Planet:</strong> Mercury</p>
-    <p><strong>Modality:</strong> Mutable</p>
-  </div>
-  <div class="zodiac-description">Analytical and helpful. Virgo strives for perfection in every detail.</div>
-</div>
+  <script>
+    const horoscopes = {
+      Aries: [
+        "Today is a great day to start something new. Your energy is contagious!",
+        "Avoid rushing decisions. Take a breath and think things through.",
+        "You may find a new opportunity knocking at your door—be ready."
+      ],
+      Taurus: [
+        "Comfort and stability are within your grasp. Trust your instincts.",
+        "A friend might need your advice today—lend an ear.",
+        "You may feel more emotional than usual. Embrace the feels!"
+      ],
+      Gemini: [
+        "Communication is your power today. Speak your truth.",
+        "A surprise message may change your perspective.",
+        "Keep your curiosity alive—it will lead to unexpected joy."
+      ],
+      Cancer: [
+        "Take time for self-care. A calm mind brings clearer vision.",
+        "Family ties are stronger today—nurture those connections.",
+        "Let go of past doubts and move forward with grace."
+      ],
+      Leo: [
+        "You shine brightest when leading. Step into your spotlight.",
+        "Creativity flows through you today—express it freely.",
+        "Someone admires your confidence—don’t be afraid to roar."
+      ],
+      Virgo: [
+        "Stay organized, and you’ll breeze through challenges.",
+        "Your attention to detail pays off today—big time.",
+        "A chance to teach or guide someone may come your way."
+      ],
+      Libra: [
+        "Balance is key. Prioritize your peace of mind.",
+        "An old connection may reappear—handle with care.",
+        "Harmony in relationships improves when you listen deeply."
+      ],
+      Scorpio: [
+        "Embrace your intensity—it’s your superpower.",
+        "You may uncover a secret today—trust your intuition.",
+        "Transformation is near. Don’t resist the changes."
+      ],
+      Sagittarius: [
+        "Adventure calls! Say yes to something spontaneous.",
+        "Learning brings fulfillment—open a book or your heart.",
+        "Positive news from afar may lift your spirits."
+      ],
+      Capricorn: [
+        "Hard work leads to reward. Keep climbing.",
+        "Structure brings peace today—stick to your plan.",
+        "Don’t forget to acknowledge how far you’ve come."
+      ],
+      Aquarius: [
+        "Your ideas can spark change—share them bravely.",
+        "Today is a day to connect with your community.",
+        "Something unconventional might inspire you deeply."
+      ],
+      Pisces: [
+        "Your dreams hold meaning. Take time to reflect.",
+        "Compassion is your strength—offer it generously.",
+        "Art, music, or poetry may speak to your soul today."
+      ]
+    };
 
-<!-- Libra -->
-<div class="zodiac-card">
-  <img src="../images/libra.png" alt="Libra Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Libra ♎</div>
-  <div class="zodiac-dates">Sep 23 - Oct 22</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Air</p>
-    <p><strong>Planet:</strong> Venus</p>
-    <p><strong>Modality:</strong> Cardinal</p>
-  </div>
-  <div class="zodiac-description">Charming and diplomatic. Libra values harmony and balance.</div>
-</div>
+    function getHoroscope() {
+      const sign = document.getElementById('zodiac').value;
+      const box = document.getElementById('predictionBox');
+      const text = document.getElementById('predictionText');
 
-<!-- Scorpio -->
-<div class="zodiac-card">
-  <img src="../images/scorpio.png" alt="Scorpio Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Scorpio ♏</div>
-  <div class="zodiac-dates">Oct 23 - Nov 21</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Water</p>
-    <p><strong>Planet:</strong> Pluto</p>
-    <p><strong>Modality:</strong> Fixed</p>
-  </div>
-  <div class="zodiac-description">Intense and passionate. Scorpio seeks truth and transformation.</div>
-</div>
+      if (!sign) {
+        alert('Please select your zodiac sign!');
+        return;
+      }
 
-<!-- Sagittarius -->
-<div class="zodiac-card">
-  <img src="../images/sagittarius.png" alt="Sagittarius Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Sagittarius ♐</div>
-  <div class="zodiac-dates">Nov 22 - Dec 21</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Fire</p>
-    <p><strong>Planet:</strong> Jupiter</p>
-    <p><strong>Modality:</strong> Mutable</p>
-  </div>
-  <div class="zodiac-description">Adventurous and free-spirited. Sagittarius loves truth and travel.</div>
-</div>
+      const options = horoscopes[sign];
+      const prediction = options[Math.floor(Math.random() * options.length)];
 
-<!-- Capricorn -->
-<div class="zodiac-card">
-  <img src="../images/capricorn.png" alt="Capricorn Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Capricorn ♑</div>
-  <div class="zodiac-dates">Dec 22 - Jan 19</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Earth</p>
-    <p><strong>Planet:</strong> Saturn</p>
-    <p><strong>Modality:</strong> Cardinal</p>
-  </div>
-  <div class="zodiac-description">Disciplined and wise. Capricorn climbs steadily to achieve goals.</div>
-</div>
+      text.innerText = prediction;
+      box.style.display = 'block';
+    }
+  </script>
 
-<!-- Aquarius -->
-<div class="zodiac-card">
-  <img src="../images/aquarius.png" alt="Aquarius Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Aquarius ♒</div>
-  <div class="zodiac-dates">Jan 20 - Feb 18</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Air</p>
-    <p><strong>Planet:</strong> Uranus</p>
-    <p><strong>Modality:</strong> Fixed</p>
-  </div>
-  <div class="zodiac-description">Innovative and independent. Aquarius seeks to improve the world.</div>
-</div>
-
-<!-- Pisces -->
-<div class="zodiac-card">
-  <img src="../images/pisces.png" alt="Pisces Icon" class="zodiac-icon" />
-  <div class="zodiac-name">Pisces ♓</div>
-  <div class="zodiac-dates">Feb 19 - Mar 20</div>
-  <div class="zodiac-details">
-    <p><strong>Element:</strong> Water</p>
-    <p><strong>Planet:</strong> Neptune</p>
-    <p><strong>Modality:</strong> Mutable</p>
-  </div>
-  <div class="zodiac-description">Dreamy and compassionate. Pisces lives in a world of feeling and fantasy.</div>
-</div>
-
-  </div>
 </body>
 </html>

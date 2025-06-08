@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gemstone Astrology Guidance</title>
+  <title>Vedic Remedies & Pujas</title>
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #fff0f5, #d0f0fd);
+      background: linear-gradient(to right, #ffe9e3, #fff7d6);
       padding: 20px;
     }
 
     .container {
       max-width: 900px;
       margin: auto;
-      background: white;
+      background: #fffdf7;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
 
     h1 {
       text-align: center;
-      color: #333;
+      color: #774936;
+      margin-bottom: 10px;
     }
 
     .form-section {
@@ -40,15 +41,15 @@
     }
 
     label {
-      display: block;
       font-weight: 600;
       margin-bottom: 6px;
+      display: block;
     }
 
     input {
       width: 100%;
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid #aaa;
     }
 
@@ -56,23 +57,22 @@
       margin-top: 20px;
       padding: 12px 30px;
       font-size: 16px;
-      background-color: #6a0dad;
+      background-color: #a0522d;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
     }
 
     button:hover {
-      background-color: #4b0082;
+      background-color: #7c3f20;
     }
 
     .result {
       margin-top: 30px;
       padding: 20px;
-      background: #f0f8ff;
-      border-left: 6px solid #6a0dad;
+      background: #fff9ef;
+      border-left: 5px solid #a0522d;
       border-radius: 10px;
     }
 
@@ -80,7 +80,6 @@
       .form-group {
         flex: 1 1 100%;
       }
-
       button {
         width: 100%;
       }
@@ -89,8 +88,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>💎 Gemstone Astrology Guidance</h1>
-
+    <h1>🕉 Vedic Remedies & Pujas</h1>
     <div class="form-section">
       <div class="form-group">
         <label for="name">Full Name:</label>
@@ -110,29 +108,29 @@
       </div>
     </div>
 
-    <button onclick="generateGemstone()">Find My Gemstone</button>
+    <button onclick="generateRemedy()">Get Vedic Remedy</button>
 
     <div class="result" id="resultBox" style="display:none;">
-      <h3>🪬 Your Recommended Gemstone:</h3>
-      <p id="predictionText"></p>
+      <h3>🪔 Suggested Vedic Remedy:</h3>
+      <p id="remedyText"></p>
     </div>
   </div>
 
   <script>
     function getZodiac(month, day) {
       const zodiacs = [
-        { sign: "Capricorn", gem: "Garnet", start: "12-22", end: "01-19" },
-        { sign: "Aquarius",  gem: "Amethyst", start: "01-20", end: "02-18" },
-        { sign: "Pisces",    gem: "Aquamarine", start: "02-19", end: "03-20" },
-        { sign: "Aries",     gem: "Diamond", start: "03-21", end: "04-19" },
-        { sign: "Taurus",    gem: "Emerald", start: "04-20", end: "05-20" },
-        { sign: "Gemini",    gem: "Pearl", start: "05-21", end: "06-20" },
-        { sign: "Cancer",    gem: "Ruby", start: "06-21", end: "07-22" },
-        { sign: "Leo",       gem: "Peridot", start: "07-23", end: "08-22" },
-        { sign: "Virgo",     gem: "Sapphire", start: "08-23", end: "09-22" },
-        { sign: "Libra",     gem: "Opal", start: "09-23", end: "10-22" },
-        { sign: "Scorpio",   gem: "Topaz", start: "10-23", end: "11-21" },
-        { sign: "Sagittarius", gem: "Turquoise", start: "11-22", end: "12-21" },
+        { sign: "Aries", remedy: "Recite Hanuman Chalisa daily. Perform Mangal Dosha Puja.", start: "03-21", end: "04-19" },
+        { sign: "Taurus", remedy: "Offer white sweets to Goddess Lakshmi. Perform Shukra Shanti Puja.", start: "04-20", end: "05-20" },
+        { sign: "Gemini", remedy: "Worship Lord Vishnu on Thursdays. Chant Budh Beej mantra.", start: "05-21", end: "06-20" },
+        { sign: "Cancer", remedy: "Donate white rice on Mondays. Perform Chandra Graha Shanti.", start: "06-21", end: "07-22" },
+        { sign: "Leo", remedy: "Offer water to Sun every morning. Recite Aditya Hriday Stotra.", start: "07-23", end: "08-22" },
+        { sign: "Virgo", remedy: "Chant Vishnu Sahasranama. Feed cows on Wednesdays.", start: "08-23", end: "09-22" },
+        { sign: "Libra", remedy: "Light ghee lamp near Tulsi plant. Do Venus-related Puja.", start: "09-23", end: "10-22" },
+        { sign: "Scorpio", remedy: "Recite Hanuman Chalisa. Offer jaggery and red cloth to Mars deity.", start: "10-23", end: "11-21" },
+        { sign: "Sagittarius", remedy: "Chant Gayatri Mantra. Worship Banana tree on Thursdays.", start: "11-22", end: "12-21" },
+        { sign: "Capricorn", remedy: "Chant Shani Beej Mantra. Donate black sesame on Saturdays.", start: "12-22", end: "01-19" },
+        { sign: "Aquarius", remedy: "Serve the poor. Chant Shani Chalisa every Saturday.", start: "01-20", end: "02-18" },
+        { sign: "Pisces", remedy: "Chant Vishnu mantras and offer yellow flowers on Thursdays.", start: "02-19", end: "03-20" },
       ];
 
       const dateStr = `${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -155,7 +153,7 @@
       return null;
     }
 
-    function generateGemstone() {
+    function generateRemedy() {
       const name = document.getElementById("name").value.trim();
       const birthdate = document.getElementById("birthdate").value;
 
@@ -170,12 +168,11 @@
       const zodiac = getZodiac(month, day);
 
       if (!zodiac) {
-        document.getElementById("predictionText").textContent = "Could not determine zodiac sign.";
+        document.getElementById("remedyText").textContent = "Could not determine zodiac sign.";
       } else {
-        document.getElementById("predictionText").innerHTML = `
-          Hello <b>${name}</b>, your zodiac sign is <b>${zodiac.sign}</b>. 
-          The recommended gemstone for you is <b>${zodiac.gem}</b>. 
-          Wearing it may enhance your luck, health, and success. 💫
+        document.getElementById("remedyText").innerHTML = `
+          Hello <b>${name}</b>, your zodiac sign is <b>${zodiac.sign}</b>.<br>
+          Recommended remedy: <b>${zodiac.remedy}</b>
         `;
       }
 
