@@ -2,14 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Navbar with RGB Border Shadow</title>
+  <title>RGB Background with Navbar</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
       font-family: sans-serif;
-      background: #111;
       color: #fff;
+      background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00aa, #ff0000);
+      background-size: 300% 300%;
+      animation: bgAnimation 10s ease infinite;
+    }
+
+    @keyframes bgAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     .navbar {
@@ -17,13 +36,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
-      background-color: #222;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
       position: relative;
-      z-index: 1;
     }
 
     .navbar h1 {
-      margin: 0;
       font-size: 24px;
     }
 
@@ -35,32 +53,19 @@
     }
 
     .nav-links a:hover {
-      color: #0ff;
+      color: #ff0;
     }
 
-    .rgb-border {
-      height: 4px;
-      width: 100%;
-      background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00aa, #ff0000);
-      background-size: 1000% 100%;
-      animation: rgbMove 6s linear infinite;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    }
-
-    @keyframes rgbMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
+    .content {
+      padding: 50px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <div class="navbar">
-    <h1>My Website</h1>
+    <h1>My RGB Site</h1>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">About</a>
@@ -69,11 +74,9 @@
     </div>
   </div>
 
-  <div class="rgb-border"></div>
-
-  <div style="padding: 50px;">
-    <h2>Welcome to my website!</h2>
-    <p>This is an example page with a navbar and animated RGB border shadow effect underneath.</p>
+  <div class="content">
+    <h2>Welcome to my animated RGB background website!</h2>
+    <p>The background color smoothly moves through the RGB spectrum using pure CSS animations.</p>
   </div>
 
 </body>
