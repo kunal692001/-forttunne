@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RGB Background with Navbar</title>
+  <title>Responsive RGB Background</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
       margin: 0;
@@ -11,45 +12,43 @@
     }
 
     body {
-      height: 100vh;
       font-family: sans-serif;
       color: #fff;
-      background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00aa, #ff0000);
-      background-size: 300% 300%;
-      animation: bgAnimation 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(270deg, #ff0055, #00ff99, #0099ff, #ff00ff);
+      background-size: 600% 600%;
+      animation: bgShift 8s ease infinite;
     }
 
-    @keyframes bgAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      position: relative;
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .navbar h1 {
-      font-size: 24px;
+      font-size: 22px;
     }
 
     .nav-links a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
-      font-size: 18px;
+      margin-left: 15px;
+      font-size: 16px;
     }
 
     .nav-links a:hover {
@@ -57,26 +56,46 @@
     }
 
     .content {
-      padding: 50px;
+      flex: 1;
+      padding: 30px 20px;
       text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        display: inline-block;
+        margin: 5px 10px 0 0;
+      }
+
+      .navbar h1 {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="navbar">
-    <h1>My RGB Site</h1>
+    <h1>RGB Site</h1>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">About</a>
-      <a href="#">Services</a>
       <a href="#">Contact</a>
     </div>
   </div>
 
   <div class="content">
-    <h2>Welcome to my animated RGB background website!</h2>
-    <p>The background color smoothly moves through the RGB spectrum using pure CSS animations.</p>
+    <h2>Fully Responsive RGB Background</h2>
+    <p>This is a smooth, optimized, mobile-friendly animated background using CSS only.</p>
   </div>
 
 </body>

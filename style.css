@@ -15,26 +15,22 @@
   width: 32px;
   height: 32px;
 }
-body {
-      height: 100vh;
-      font-family: sans-serif;
+body { font-family: sans-serif;
       color: #fff;
-      background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00aa, #ff0000);
-      background-size: 300% 300%;
-      animation: bgAnimation 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(270deg, #ff0055, #00ff99, #0099ff, #ff00ff);
+      background-size: 600% 600%;
+      animation: bgShift 8s ease infinite;
     }
 
-    @keyframes bgAnimation {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
+
 
 /* navbar section start */
 nav{ 
