@@ -20,7 +20,7 @@ body { font-family: sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(270deg, #ff0055, #00ff99, #0099ff, #ff00ff);
+      background: linear-gradient(270deg, #FFD700);
       background-size: 600% 600%;
       animation: bgShift 8s ease infinite;
     }
@@ -420,7 +420,7 @@ color: white;
 /*  */
 
 .offer-card-section {
-      background-color: #fff;
+      background-color: #FFD700;
       padding: 40px 0;
     }
 
@@ -458,14 +458,14 @@ color: white;
     }
 
     @keyframes multiColorBlink {
-      0% { background: red; }
-      14% { background: orange; }
-      28% { background: yellow; }
-      42% { background: green; }
-      57% { background: blue; }
-      71% { background: indigo; }
-      85% { background: violet; }
-      100% { background: red; }
+      0% { background:  }
+      14% { background: ; }
+      28% { background: ; }
+      100% { background: green; }
+      57% { background: ; }
+      71% { background: ; }
+      85% { background: ; }
+      100% { background: ; }
     }
 
     .offer-card-title {

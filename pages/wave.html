@@ -2,101 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Responsive RGB Background</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Background</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
       font-family: sans-serif;
       color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(270deg, #ff0055, #00ff99, #0099ff, #ff00ff);
-      background-size: 600% 600%;
-      animation: bgShift 8s ease infinite;
-    }
-
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 15px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      background: url('73878938-2904-45a5-a4c1-91828fc6bf72.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      text-shadow: 2px 2px 5px #000;
     }
 
-    .navbar h1 {
-      font-size: 22px;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 15px;
-      font-size: 16px;
-    }
-
-    .nav-links a:hover {
-      color: #ff0;
-    }
-
-    .content {
-      flex: 1;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        margin-top: 10px;
-      }
-
-      .nav-links a {
-        display: inline-block;
-        margin: 5px 10px 0 0;
-      }
-
-      .navbar h1 {
-        font-size: 20px;
-      }
+    h1 {
+      font-size: 3rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px 40px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <h1>RGB Site</h1>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
-
-  <div class="content">
-    <h2>Fully Responsive RGB Background</h2>
-    <p>This is a smooth, optimized, mobile-friendly animated background using CSS only.</p>
-  </div>
+  <h1>✨ Golden Sparkle Background ✨</h1>
 
 </body>
 </html>
