@@ -20,7 +20,7 @@ body { font-family: sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(270deg, #FFD700);
+      background: linear-gradient(270deg, #deba0b);
       background-size: 600% 600%;
       animation: bgShift 8s ease infinite;
     }
@@ -420,7 +420,7 @@ color: white;
 /*  */
 
 .offer-card-section {
-      background-color: #FFD700;
+      background-color: #deba0b;
       padding: 40px 0;
     }
 
