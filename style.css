@@ -15,7 +15,9 @@
   width: 32px;
   height: 32px;
 }
-
+body{
+  
+}
 
 /* navbar section start */
 nav{ 
@@ -95,6 +97,25 @@ nav{
 
 /* navbar section end */
 
+ .rgb-border {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #7a00ff, #ff00aa, #ff0000);
+      background-size: 1000% 100%;
+      animation: rgbMove 6s linear infinite;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes rgbMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    
 
 /* background mam-img section start */
 
